@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "wallet-service-api",
+		"name": "Wallet Service API",
+		"description": "API endpoints for Wallet Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Create Wallet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"wallet123\",\n  \"currency\": \"USD\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/wallets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"wallets"
+					]
+				}
+			}
+		},
+		{
+			"name": "2. Fund Wallet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"amount\": 100.50\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/wallets/:id/fund",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"wallets",
+						":id",
+						"fund"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "wallet123"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "3. Transfer Between Wallets",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"fromWalletId\": \"wallet123\",\n  \"toWalletId\": \"wallet456\",\n  \"amount\": 50.25\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/wallets/transfer",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"wallets",
+						"transfer"
+					]
+				}
+			}
+		},
+		{
+			"name": "4. Fetch Wallet Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/wallets/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"wallets",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "wallet123"
+						}
+					]
+				}
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
